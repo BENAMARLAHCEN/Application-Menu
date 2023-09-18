@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+FILE *fptr;
 struct person {
   char nom[20];
   char pre[20];
@@ -66,8 +66,7 @@ int main() {
     switch (n) {
     case 1:
       for (per = &per1; per < &per1 + t - 1; per++) {
-        printf("nom :%s prenom :%s CN°:%s N°tel:%s salyre :%d  annes de "
-               "naissance :%d",
+        printf("nom :%s prenom :%s CN°:%s N°tel:%s salyre :%d  annes de naissance :%d",
                per->nom, per->pre, per->cn, per->tel, per->sal, per->an);
         printf("\n");
       }
@@ -75,7 +74,7 @@ int main() {
 
     case 2:
       per = &per1 + t - 1;
-      printf("entrez votre information :");
+      printf("entrez votre information (nom prenom CN° N°tel salyre naissance) :");
       scanf("%s %s %s %s %d %d", per->nom, per->pre, per->cn, per->tel,
             &per->sal, &per->an);
 
@@ -191,16 +190,19 @@ int main() {
 
       break;
 
+      // case 8:
+      //   for(wdl3= &per3;wdl3<&per3+wd-1;wdl3++){
+      //     printf("wordlist : %s\n",wdl3->wrdl);
+      //   }
+      //   break;
+
     case 7:
-      fopen("C:\\wordlist.txt", "w");
-      if (wordlist == NULL) {
-        printf("Error!");
-        exit(1);
-      }
+      fptr = fopen("filename.txt", "w");
+
       for (wdl3 = &per3; wdl3 < &per3 + wd - 1; wdl3++) {
-        fprintf(wordlist, "%s\n", wdl3->wrdl);
+        fprintf(fptr, "%s\n", wdl3->wrdl);
       }
-      fclose(wordlist);
+      fclose(fptr);
       break;
     case 8:
       printf("8");
